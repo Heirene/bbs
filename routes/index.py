@@ -45,6 +45,7 @@ def register():
     form = request.form
     # 用类函数来判断
     u = User.register(form)
+    # pass:pass a message to index page to remind user to register unsuccessfully
     return redirect(url_for('.index'))
 
 
