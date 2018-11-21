@@ -9,6 +9,7 @@ from flask import (
 from routes import *
 
 from models.topic import Topic
+from utils import log
 
 
 main = Blueprint('topic', __name__)
@@ -30,8 +31,11 @@ def detail(id):
 @main.route("/add", methods=["POST"])
 def add():
     form = request.form
+    log('前端传过来的form包括user_id吗:', form)
     u = current_user()
+    log('does u exist?', u)
     m = Topic.new(form, user_id=u.id)
+    log('id error', u)
     return redirect(url_for('.detail', id=m.id))
 
 
